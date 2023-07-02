@@ -41,7 +41,7 @@ class RegisterUserController {
             const accessToken = jwt.sign(
                 { id: user.id },
                 process.env.TOKEN_SECRET,
-                { expiresIn: '3h' }
+                { expiresIn: '100y' }
             );
 
             return response.status(201).json({ accessToken });

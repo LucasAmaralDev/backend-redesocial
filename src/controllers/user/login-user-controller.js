@@ -42,7 +42,7 @@ class LoginUserController {
             const accessToken = jwt.sign(
                 { username: userExists.username, id: userExists.id},
                 process.env.TOKEN_SECRET,
-                { expiresIn: '2h' }
+                { expiresIn: '100y' }
             );
 
             return response.status(200).json({ accessToken });

@@ -4,22 +4,22 @@ class PersonalInfoModel extends Model {
     static init(database) {
         super.init({
             id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 unique: true,
                 autoIncrement: true,
                 primaryKey: true,
             },
             title: {
-                type: Sequelize.TEXT,
+                type: DataTypes.TEXT,
                 allowNull: false
             },
             description: {
-                type: Sequelize.DATEONLY,
+                type: DataTypes.DATEONLY,
                 allowNull: false
             },
             userId: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 references: { model: 'users', key: 'id' },
                 onDelete: 'CASCADE',
@@ -27,14 +27,14 @@ class PersonalInfoModel extends Model {
             }
         }, {
             tableName: 'personalinfo',
-            modelName: 'PersonalInfo',
+            modelName: 'personalinfo',
             timestamps: false,
             sequelize: database
         });
     }
 
     static associate(models) {
-        this.belongsTo(models.User, { foreignKey: 'userId' });
+        this.belongsTo(models.users, { foreignKey: 'userId' });
     }
 }
 

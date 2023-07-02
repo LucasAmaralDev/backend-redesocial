@@ -33,7 +33,7 @@ class UserModel extends Model {
     static associate(models) {
         this.hasMany(models.Posts, { foreignKey: 'userId' });
         this.hasMany(models.Activities, { foreignKey: 'userId' });
-        this.hasMany(models.PersonalInfo, { foreignKey: 'userId' });
+        this.hasMany(models.personalinfo, { foreignKey: 'userId' });
     }
 }
 

@@ -9,10 +9,10 @@ const { UserModel } = require('../../models/user-model');
 class LoginUserController {
     async sigin(request, response) {
         try {
-            const { name, password } = request.body;
+            const { username, password } = request.body;
 
             // Validar parâmetros
-            if (!name || !password) {
+            if (!username || !password) {
                 return response.status(400).json({
                     error: 'Nome e senha são obrigatórios!'
                 });
@@ -20,7 +20,7 @@ class LoginUserController {
 
             // Verifica se usuário existe
             const userExists = await UserModel.findOne({
-                where: { name }
+                where: { username }
             });
 
             if (!userExists) {
@@ -42,7 +42,7 @@ class LoginUserController {
             const accessToken = jwt.sign(
                 { id: userExists.id },
                 process.env.TOKEN_SECRET,
-                { expiresIn: '30m' }
+                { expiresIn: '2h' }
             );
 
             return response.status(200).json({ accessToken });

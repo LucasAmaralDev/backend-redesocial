@@ -9,12 +9,12 @@ const { UserModel } = require('../../models/user-model');
 class RegisterUserController {
     async signup(request, response) {
         try {
-            const { name, password } = request.body;
+            const { username, password, imgprofile } = request.body;
 
             // Validar parâmetros
-            if (!name || !password) {
+            if (!username || !password) {
                 return response.status(400).json({
-                    error: 'Nome e senha são obrigatórios!'
+                    error: 'Username e senha são obrigatórios!'
                 });
             }
 
@@ -26,8 +26,9 @@ class RegisterUserController {
 
             // Cria usuário
             const user = await UserModel.create({
-                name,
+                username,
                 password: passwordHashed,
+                imgprofile
             });
 
             if (!user) {
@@ -40,7 +41,7 @@ class RegisterUserController {
             const accessToken = jwt.sign(
                 { id: user.id },
                 process.env.TOKEN_SECRET,
-                { expiresIn: '30m' }
+                { expiresIn: '3h' }
             );
 
             return response.status(201).json({ accessToken });

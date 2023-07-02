@@ -15,7 +15,7 @@ class PersonalInfoModel extends Model {
                 allowNull: false
             },
             description: {
-                type: DataTypes.DATEONLY,
+                type: DataTypes.TEXT,
                 allowNull: false
             },
             userId: {

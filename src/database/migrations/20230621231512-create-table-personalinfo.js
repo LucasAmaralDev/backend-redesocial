@@ -16,7 +16,7 @@ module.exports = {
                 allowNull: false
             },
             description: {
-                type: Sequelize.DATEONLY,
+                type: Sequelize.TEXT,
                 allowNull: false
             },
             userId: {

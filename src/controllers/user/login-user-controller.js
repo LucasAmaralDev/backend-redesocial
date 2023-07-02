@@ -40,7 +40,7 @@ class LoginUserController {
 
             // Gera e retorna o access token
             const accessToken = jwt.sign(
-                { id: userExists.id },
+                { username: userExists.username, id: userExists.id},
                 process.env.TOKEN_SECRET,
                 { expiresIn: '2h' }
             );
